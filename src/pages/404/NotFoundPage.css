@@ -1,0 +1,19 @@
+.container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.not-found h2 {
+  font-size: 5rem;
+}
+
+.not-found img {
+  width: 40rem;
+}
+
+.not-found a {
+  font-size: 2rem;
+}

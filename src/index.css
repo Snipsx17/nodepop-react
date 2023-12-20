@@ -7,4 +7,20 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p,
+span {
+  font-size: 1.5rem;
+}
+
+h2,
+.page-title {
+  font-size: 3rem;
+}
+
+.page-title {
+  margin-bottom: 4rem;
+  margin-top: 4rem;
 }

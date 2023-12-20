@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import storageLocalHost from "../../../utils/storage";
 
 const AuthContext = createContext(false);
 
@@ -13,7 +14,10 @@ export const AuthContextProvider = ({ children, initiallyLogged }) => {
   const authData = {
     isLogged,
     loginHandler: () => setIsLogged(true),
-    logoutHandler: () => setIsLogged(false),
+    logoutHandler: () => {
+      storageLocalHost.remove("auth");
+      setIsLogged(false);
+    },
   };
   return (
     <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>

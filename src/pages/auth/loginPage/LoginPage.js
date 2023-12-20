@@ -2,6 +2,7 @@ import { useState } from "react";
 import { login } from "../service";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
+import { useIsLogged } from "./LoginContext";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -10,6 +11,7 @@ const LoginPage = () => {
   });
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
+  const { loginHandler } = useIsLogged();
 
   const onChangeHandler = (event) => {
     setCredentials({
@@ -17,13 +19,13 @@ const LoginPage = () => {
       [event.target.name]: event.target.value,
     });
   };
-  const loginHandler = async (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     try {
       await login(credentials);
-      navigate("/");
+      loginHandler();
+      navigate("/adverts");
     } catch (error) {
-      console.log(error);
       setLoginError(error.data.message);
     }
   };
@@ -32,12 +34,13 @@ const LoginPage = () => {
     <div className="login-content">
       <div className="login-dialog">
         <h3>Login</h3>
-        <form onSubmit={loginHandler}>
+        <form onSubmit={submitHandler}>
           <input
             type="email"
             name="email"
             onChange={onChangeHandler}
             value={credentials.email}
+            autoComplete="username"
           />
           <br />
           <input
@@ -45,6 +48,7 @@ const LoginPage = () => {
             name="password"
             onChange={onChangeHandler}
             value={credentials.password}
+            autoComplete="current-password"
           />
           <br />
           <button type="submit">Login</button>

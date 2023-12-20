@@ -1,0 +1,79 @@
+.adverts {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.adverts a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li.advert-card {
+  width: 20rem;
+  height: 40rem;
+  list-style: none;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+li .card-info {
+  padding: 1rem;
+}
+
+li.advert-card img {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+
+li .card-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-info .product-price {
+  font-weight: bold;
+}
+
+.card-info .product-name {
+  color: gray;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.card-info .tags {
+  margin-top: 1.3rem;
+}
+
+.card-info .product-tag {
+  background-color: #3dd2ba;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.adverts .load-error {
+  font-size: 1.5rem;
+}
+
+.no-ads {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.no-ads a {
+  text-decoration: none;
+  width: fit-content;
+  font-size: 1.3rem;
+}

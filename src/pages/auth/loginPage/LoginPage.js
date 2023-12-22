@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { login } from "../service";
-import "./LoginPage.css";
-import { useNavigate } from "react-router-dom";
-import { useIsLogged } from "./LoginContext";
+import { useEffect, useState } from 'react';
+import { login } from '../service';
+import './LoginPage.css';
+import { useNavigate } from 'react-router-dom';
+import { useIsLogged } from './LoginContext';
+import Button from '../../../components/Button';
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
-  const [loginError, setLoginError] = useState("");
+  const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
-  const { loginHandler } = useIsLogged();
+  const { loginHandler, isLogged } = useIsLogged();
 
   const onChangeHandler = (event) => {
     setCredentials({
@@ -24,17 +25,21 @@ const LoginPage = () => {
     try {
       await login(credentials);
       loginHandler();
-      navigate("/adverts");
+      navigate('/adverts');
     } catch (error) {
       setLoginError(error.data.message);
     }
   };
 
+  useEffect(() => {
+    isLogged && navigate('/adverts');
+  }, [isLogged, navigate]);
+
   return (
     <div className="login-content">
       <div className="login-dialog">
-        <h3>Login</h3>
-        <form onSubmit={submitHandler}>
+        <h2>Login</h2>
+        <form className="login-form" onSubmit={submitHandler}>
           <input
             type="email"
             name="email"
@@ -51,9 +56,9 @@ const LoginPage = () => {
             autoComplete="current-password"
           />
           <br />
-          <button type="submit">Login</button>
+          <Button $variant="primary">Login</Button>
         </form>
-        <span>{loginError ? "User or password invalid" : null}</span>
+        <span>{loginError ? 'User or password invalid' : null}</span>
       </div>
     </div>
   );

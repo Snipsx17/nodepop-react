@@ -9,8 +9,8 @@
 }
 
 .login-dialog {
-  width: 20rem;
-  background-color: aliceblue;
+  width: 30rem;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,22 @@
   border-radius: 30px;
 }
 
-.login-dialog h3 {
-  font-size: 2rem;
-  margin-top: 0;
+.login-dialog h2 {
+  margin-bottom: 1rem;
+}
+
+form.login-form {
+  text-align: center;
+}
+
+.login-form input {
+  font-size: 1.5rem;
+  color: #29363d;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0px 0px 0px 1px #5c7a89;
+  box-sizing: border-box;
+  padding: 1.5rem 1rem;
+  text-align: start;
+  border: none;
 }

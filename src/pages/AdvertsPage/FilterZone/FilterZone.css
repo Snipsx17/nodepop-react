@@ -1,0 +1,17 @@
+.filter-box {
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  border-bottom: 1px solid #d1dbe0;
+  border-top: 1px solid #d1dbe0;
+}
+
+.filter-box form {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+}
+
+.input-box label {
+  margin-right: 1rem;
+}

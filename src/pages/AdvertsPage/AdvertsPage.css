@@ -70,6 +70,7 @@ li .card-info-row {
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  flex-grow: 1;
 }
 
 .no-ads a {

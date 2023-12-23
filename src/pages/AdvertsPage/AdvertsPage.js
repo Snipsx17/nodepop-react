@@ -2,42 +2,70 @@ import { useEffect, useState } from 'react';
 import Content from '../../components/Content';
 import { getAdverts } from '../auth/service';
 import './AdvertsPage.css';
-import { Link } from 'react-router-dom';
-import Button from '../../components/Button';
+import { Link, Navigate } from 'react-router-dom';
+import FilterZone from './FilterZone/FilterZone';
+import NoAdverts from './NoAdverts/NoAdverts';
+import { useIsLogged } from '../auth/loginPage/LoginContext';
 
 const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([]);
+  const { isLogged } = useIsLogged();
   const [loadAdsError, setLoadAdsError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [filters, setFilters] = useState({ name: '', status: '0' });
+
+  const onChangeFilters = (event) => {
+    setFilters({ ...filters, [event.target.name]: event.target.value });
+  };
+
+  const filteredAdverts = () => {
+    return adverts
+      .filter(
+        (advert) =>
+          advert.name.toLowerCase().search(filters.name.toLowerCase()) !== -1
+      )
+      .filter((advert) => {
+        return filters.status === '0'
+          ? true
+          : filters.status === '1'
+          ? advert.sale === false
+          : advert.sale === true;
+      });
+  };
 
   const renderAdverts = (adverts) => {
     return !adverts.length ? (
-      <div className="no-ads">
-        <span>No adverts to display, start Selling or buying...</span>
-        <Button as={Link} $variant="primary" to="new" relative="route">
-          Create your first Advert
-        </Button>
-      </div>
+      <NoAdverts>No adverts to display, try to create one</NoAdverts>
     ) : (
-      <ul className="adverts">
-        {adverts.map(({ id, photo, price, sale, name, tags }) => {
-          return (
-            <Link key={id} to={id}>
-              <li className="advert-card">
-                <img src={photo} alt="product-pic" />
-                <div className="card-info">
-                  <div className="card-info-row">
-                    <p className="product-price">{price}$</p>
-                    <p className="product-state">{sale ? 'SALE' : 'BUY'}</p>
-                  </div>
-                  <p className="product-name">{name}</p>
-                  <div className="tags">{renderTags(tags)}</div>
-                </div>
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
+      <>
+        <FilterZone onChangeFilters={onChangeFilters} />
+        <ul className="adverts">
+          {!filteredAdverts().length ? (
+            <NoAdverts>
+              No ads were found with those filters. Try others, or even better,
+              create one.
+            </NoAdverts>
+          ) : (
+            filteredAdverts().map(({ id, photo, price, sale, name, tags }) => {
+              return (
+                <Link key={id} to={id}>
+                  <li className="advert-card">
+                    <img src={photo} alt="product-pic" />
+                    <div className="card-info">
+                      <div className="card-info-row">
+                        <p className="product-price">{price}$</p>
+                        <p className="product-state">{sale ? 'SALE' : 'BUY'}</p>
+                      </div>
+                      <p className="product-name">{name}</p>
+                      <div className="tags">{renderTags(tags)}</div>
+                    </div>
+                  </li>
+                </Link>
+              );
+            })
+          )}
+        </ul>
+      </>
     );
   };
 
@@ -60,7 +88,7 @@ const AdvertsPage = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
+    !isLogged ? Navigate('/login') : setIsLoading(true);
     getAdverts()
       .then((data) => {
         setAdverts(data);
@@ -70,7 +98,7 @@ const AdvertsPage = () => {
         setLoadAdsError(error);
         setIsLoading(false);
       });
-  }, []);
+  }, [isLogged]);
 
   return (
     <>

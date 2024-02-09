@@ -22,3 +22,7 @@ export const logout = () => {
 export const getAdverts = () => {
   return client.get('api/v1/adverts');
 };
+
+export const getAdvert = (id) => {
+  return client.get(`api/v1/adverts/${id}`);
+};

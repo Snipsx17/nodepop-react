@@ -6,6 +6,7 @@ import { Link, Navigate } from 'react-router-dom';
 import FilterZone from './FilterZone/FilterZone';
 import NoAdverts from './NoAdverts/NoAdverts';
 import { useIsLogged } from '../auth/loginPage/LoginContext';
+import Tags from '../../components/Tags';
 
 const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([]);
@@ -57,7 +58,7 @@ const AdvertsPage = () => {
                         <p className="product-state">{sale ? 'SALE' : 'BUY'}</p>
                       </div>
                       <p className="product-name">{name}</p>
-                      <div className="tags">{renderTags(tags)}</div>
+                      {<Tags tags={tags} />}
                     </div>
                   </li>
                 </Link>
@@ -75,16 +76,6 @@ const AdvertsPage = () => {
         Something went wrong while trying to load ads, try again later...
       </span>
     );
-  };
-
-  const renderTags = (tags) => {
-    const result = tags.map((tag) => (
-      <span key={tag[1]} className="product-tag">
-        {tag}
-      </span>
-    ));
-
-    return result;
   };
 
   useEffect(() => {

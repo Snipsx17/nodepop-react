@@ -31,7 +31,7 @@ li.advert-card img {
   border-radius: 2rem;
 }
 
-li .card-info-row {
+.card-info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,19 +46,6 @@ li .card-info-row {
   text-transform: capitalize;
   font-size: 1.4rem;
   margin-top: 0.5rem;
-}
-
-.card-info .tags {
-  margin-top: 1.3rem;
-}
-
-.card-info .product-tag {
-  background-color: #3dd2ba;
-  color: #fff;
-  border-radius: 999px;
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-  font-size: 1.1rem;
 }
 
 .adverts .load-error {
@@ -77,4 +64,9 @@ li .card-info-row {
   text-decoration: none;
   width: fit-content;
   font-size: 1.3rem;
+}
+
+.advert-container {
+  width: 70vw;
+  position: relative;
 }

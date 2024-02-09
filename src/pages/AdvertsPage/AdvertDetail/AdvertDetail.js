@@ -18,9 +18,9 @@ const AdvertDetail = () => {
       <div className="advert-container" style={{ margin: 'auto' }}>
         <div className="advert-photo">
           <img
-            src={advert.photo}
+            src={advert.photo || '../no-pic.jpeg'}
             alt="product-pic"
-            style={{ width: '70vw', borderRadius: '2rem' }}
+            style={{ width: '40vw', borderRadius: '2rem' }}
           />
         </div>
         <div className="advert-info" style={{ marginTop: '2rem' }}>

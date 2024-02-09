@@ -51,7 +51,7 @@ const AdvertsPage = () => {
               return (
                 <Link key={id} to={id}>
                   <li className="advert-card">
-                    <img src={photo} alt="product-pic" />
+                    <img src={photo || '../no-pic.jpeg'} alt="product-pic" />
                     <div className="card-info">
                       <div className="card-info-row">
                         <p className="product-price">{price}$</p>

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './FilterZone.css';
 
 const FilterZone = ({ onChangeFilters }) => {
@@ -18,7 +17,7 @@ const FilterZone = ({ onChangeFilters }) => {
         <div className="input-box">
           <label id="status">Buy / Sell</label>
           <select name="status" id="status" onChange={onChangeFilters}>
-            <option value={0}></option>
+            <option value={0}>All</option>
             <option value={1}>Buy</option>
             <option value={2}>Sell</option>
           </select>

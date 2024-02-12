@@ -1,6 +1,6 @@
 const Tags = ({ tags }) => {
   return (
-    <div style={{ marginTop: '1.3rem' }}>
+    <div style={{ marginTop: '1.3rem', marginBottom: '1.3rem' }}>
       {tags &&
         tags.map((tag) => (
           <span

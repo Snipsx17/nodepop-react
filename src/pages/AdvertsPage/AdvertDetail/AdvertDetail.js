@@ -4,9 +4,12 @@ import { useParams } from 'react-router-dom';
 import Tags from '../../../components/Tags';
 import '../AdvertsPage.css';
 import Content from '../../../components/Content';
+import Button from '../../../components/Button';
+import DeleteModal from '../../../components/deleteModal/DeleteModal';
 
 const AdvertDetail = () => {
   const [advert, setAdvert] = useState({});
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -40,9 +43,20 @@ const AdvertDetail = () => {
               {advert.name}
             </p>
             {<Tags tags={advert.tags} />}
+            <Button
+              $variant="primary"
+              onClick={() => {
+                setShowDeleteModal(!showDeleteModal);
+              }}
+            >
+              DELETE
+            </Button>
           </div>
         </div>
       </div>
+      {showDeleteModal ? (
+        <DeleteModal setShowDeleteModal={setShowDeleteModal} advert={advert} />
+      ) : null}
     </Content>
   );
 };

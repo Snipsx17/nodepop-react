@@ -4,7 +4,7 @@ const Tags = ({ tags }) => {
       {tags &&
         tags.map((tag) => (
           <span
-            key={tag[1]}
+            key={tag}
             style={{
               backgroundColor: '#3dd2ba',
               color: '#fff',

@@ -2,6 +2,7 @@ import Layout from './components/layout/Layout';
 import NotFoundPage from './pages/404/NotFoundPage';
 import AdvertDetail from './pages/AdvertsPage/AdvertDetail/AdvertDetail';
 import AdvertsPage from './pages/AdvertsPage/AdvertsPage';
+import NewAdvert from './pages/NewAdvertPage/NewAdvert';
 import AuthRequired from './pages/auth/AuthRequired';
 import LoginPage from './pages/auth/loginPage/LoginPage';
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -18,7 +19,7 @@ function App() {
             </AuthRequired>
           }
         />
-        <Route path="new" element={<div>New advert</div>} />
+        <Route path="new" element={<NewAdvert />} />
         <Route path=":id" element={<AdvertDetail />} />
       </Route>
       <Route path="/" element={<Navigate to="/adverts" />} />

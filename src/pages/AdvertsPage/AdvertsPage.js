@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Content from '../../components/Content';
-import { getAdverts } from '../auth/service';
+import { getAdverts } from '../service';
 import './AdvertsPage.css';
 import { Link, Navigate } from 'react-router-dom';
 import FilterZone from './FilterZone/FilterZone';

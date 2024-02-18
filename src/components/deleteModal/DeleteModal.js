@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { deleteAdvert } from '../../pages/auth/service';
+import { deleteAdvert } from '../../pages/service';
 import Button from '../Button';
 import Modal from './Modal';
 import Overlay from './Overlay';

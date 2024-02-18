@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAdvert } from '../../auth/service';
+import { getAdvertById } from '../../service';
 import { useParams } from 'react-router-dom';
 import Tags from '../../../components/Tags';
 import '../AdvertsPage.css';
@@ -13,7 +13,7 @@ const AdvertDetail = () => {
   const params = useParams();
 
   useEffect(() => {
-    getAdvert(params.id).then((data) => setAdvert(data));
+    getAdvertById(params.id).then((data) => setAdvert(data));
   }, [params.id]);
 
   return (

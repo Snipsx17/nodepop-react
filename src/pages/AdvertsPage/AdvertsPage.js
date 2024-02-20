@@ -7,6 +7,8 @@ import FilterZone from './FilterZone/FilterZone';
 import NoAdverts from './NoAdverts/NoAdverts';
 import { useIsLogged } from '../auth/loginPage/LoginContext';
 import Tags from '../../components/Tags';
+import imgPlaceHolder from '../../assets/no-pic.jpeg';
+import { Error } from '../../components/Error';
 
 const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([]);
@@ -51,7 +53,7 @@ const AdvertsPage = () => {
               return (
                 <Link key={id} to={id}>
                   <li className="advert-card">
-                    <img src={photo || '../no-pic.jpeg'} alt="product-pic" />
+                    <img src={photo || imgPlaceHolder} alt="product-pic" />
                     <div className="card-info">
                       <div className="card-info-row">
                         <p className="product-price">{price}$</p>
@@ -67,14 +69,6 @@ const AdvertsPage = () => {
           )}
         </ul>
       </>
-    );
-  };
-
-  const renderError = () => {
-    return (
-      <span className="load-error">
-        Something went wrong while trying to load ads, try again later...
-      </span>
     );
   };
 
@@ -97,7 +91,9 @@ const AdvertsPage = () => {
         {isLoading ? (
           <>Loading...</>
         ) : loadAdsError ? (
-          renderError(loadAdsError)
+          <Error>
+            Something went wrong while trying to load ads, try again later...
+          </Error>
         ) : (
           renderAdverts(adverts)
         )}

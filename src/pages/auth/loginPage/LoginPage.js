@@ -10,7 +10,7 @@ const LoginPage = () => {
     email: '',
     password: '',
   });
-  const [rememberSesion, setRememberSesion] = useState(false);
+  const [rememberSession, setRememberSession] = useState(false);
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
   const { loginHandler, isLogged } = useIsLogged();
@@ -23,13 +23,13 @@ const LoginPage = () => {
   };
 
   const rememberSessionHandler = () => {
-    setRememberSesion(!rememberSesion);
+    setRememberSession(!rememberSession);
   };
 
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      await login(credentials, rememberSesion);
+      await login(credentials, rememberSession);
       loginHandler();
       navigate('/adverts');
     } catch (error) {
@@ -64,11 +64,11 @@ const LoginPage = () => {
           <br />
           <input
             type="checkbox"
-            name="rememberSesion"
-            checked={rememberSesion}
+            name="rememberSession"
+            checked={rememberSession}
             onChange={rememberSessionHandler}
           />
-          <label> Remenber me</label>
+          <label> Remember me</label>
           <br />
           <Button $variant="primary">Login</Button>
         </form>

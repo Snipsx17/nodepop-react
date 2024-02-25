@@ -58,13 +58,23 @@ export const NewAdvertFormContextProvider = ({ children }) => {
     setAdvertData({ ...advertData, [event.target.name]: event.target.value });
   };
 
+  const resetAdvertData = () => {
+    setAdvertData({
+      name: '',
+      sale: true,
+      price: 0,
+      tags: [],
+      photo: null,
+    });
+  };
+
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
       setIsFetching(true);
       const result = await createAdvert(advertData);
       setIsFetching(false);
-
+      resetAdvertData();
       navigate(`/adverts/${result.id}`);
     } catch (error) {
       setIsFetching(false);

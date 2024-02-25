@@ -26,7 +26,12 @@ const NewAdvertForm = ({ submitHandler, changeHandler, advertData }) => {
         </div>
         <div className="input-box">
           <label htmlFor="sale">Buy / Sell</label>
-          <select name="sale" id="sale" onChange={changeHandler}>
+          <select
+            name="sale"
+            id="sale"
+            onChange={changeHandler}
+            value={advertData.sale === true ? 'sale' : 'buy'}
+          >
             <option value={'sale'}>For Sale</option>
             <option value={'buy'}>For Buy</option>
           </select>
@@ -48,6 +53,7 @@ const NewAdvertForm = ({ submitHandler, changeHandler, advertData }) => {
             name="tags"
             onChange={changeHandler}
             multiple={true}
+            value={advertData.tags}
           >
             {tags.map((tag) => {
               return (
@@ -72,7 +78,6 @@ const NewAdvertForm = ({ submitHandler, changeHandler, advertData }) => {
           Create Advert
         </Button>
       </form>
-      <span>{}</span>
     </>
   );
 };

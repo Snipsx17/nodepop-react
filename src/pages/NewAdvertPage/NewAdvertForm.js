@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import { getTags } from './service';
+import { useNewFormData } from './Context';
 
-const NewAdvertForm = ({
-  submitHandler,
-  changeHandler,
-  advertData,
-  isValidForm,
-}) => {
+const NewAdvertForm = () => {
   const [tags, setTags] = useState([]);
+  const { submitHandler, onChangeHandler, advertData, isValidForm } =
+    useNewFormData();
 
   useEffect(() => {
     getTags().then((tags) => {
@@ -26,7 +24,7 @@ const NewAdvertForm = ({
             type="text"
             name="name"
             value={advertData.name}
-            onChange={changeHandler}
+            onChange={onChangeHandler}
           />
         </div>
         <div className="input-box">
@@ -34,7 +32,7 @@ const NewAdvertForm = ({
           <select
             name="sale"
             id="sale"
-            onChange={changeHandler}
+            onChange={onChangeHandler}
             value={advertData.sale === true ? 'sale' : 'buy'}
           >
             <option value={'sale'}>For Sale</option>
@@ -47,7 +45,7 @@ const NewAdvertForm = ({
             id="price"
             type="number"
             name="price"
-            onChange={changeHandler}
+            onChange={onChangeHandler}
             value={advertData.price}
           />
         </div>
@@ -56,7 +54,7 @@ const NewAdvertForm = ({
           <select
             id="tags"
             name="tags"
-            onChange={changeHandler}
+            onChange={onChangeHandler}
             multiple={true}
             value={advertData.tags}
           >
@@ -75,7 +73,7 @@ const NewAdvertForm = ({
             type="file"
             name="photo"
             accept="image/png, image/jpeg, image/jpg"
-            onChange={changeHandler}
+            onChange={onChangeHandler}
           />
         </div>
 

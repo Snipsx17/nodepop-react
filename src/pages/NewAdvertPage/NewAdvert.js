@@ -13,8 +13,15 @@ const NewAdvert = () => {
     tags: [],
     photo: null,
   });
+
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(false);
+  const isValidForm = !!(
+    advertData.name &&
+    advertData.price &&
+    advertData.tags.length > 0
+  );
+
   const navigate = useNavigate();
 
   const onChangeHandler = (event) => {
@@ -70,6 +77,7 @@ const NewAdvert = () => {
           changeHandler={onChangeHandler}
           submitHandler={submitHandler}
           advertData={advertData}
+          isValidForm={isValidForm}
         />
         <div>
           <span>{error || ''}</span>

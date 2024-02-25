@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import { getTags } from './service';
 
-const NewAdvertForm = ({ submitHandler, changeHandler, advertData }) => {
+const NewAdvertForm = ({
+  submitHandler,
+  changeHandler,
+  advertData,
+  isValidForm,
+}) => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -15,12 +20,12 @@ const NewAdvertForm = ({ submitHandler, changeHandler, advertData }) => {
     <>
       <form className="new-advert-form">
         <div className="input-box">
-          <label htmlFor="name">Title</label>
+          <label htmlFor="name">Name</label>
           <input
             id="name"
             type="text"
             name="name"
-            value={advertData.title}
+            value={advertData.name}
             onChange={changeHandler}
           />
         </div>
@@ -74,7 +79,11 @@ const NewAdvertForm = ({ submitHandler, changeHandler, advertData }) => {
           />
         </div>
 
-        <Button $variant="primary" onClick={submitHandler}>
+        <Button
+          $variant="primary"
+          onClick={submitHandler}
+          disabled={!isValidForm}
+        >
           Create Advert
         </Button>
       </form>

@@ -1,6 +1,8 @@
 import { styled } from 'styled-components';
 
 const Button = styled.button`
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   background-color: ${(props) =>
     props.$variant === 'primary' ? '#3dd2ba' : '#fff'};
   color: ${(props) => (props.$variant === 'primary' ? '#000' : '#3dd2ba')};
